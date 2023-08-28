@@ -1,0 +1,60 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int MOD = 1e9+7;
+int binaryExponentiation(int x, int p){
+    int res = 1;
+    while(p){
+        if(p%2){
+            res = (res * x)%MOD;
+        }
+
+        x = (x*x)%MOD;
+        p = p/2;
+    }
+    
+    return res;
+}
+
+void solve(){
+    int n, k;
+    cin>>n>>k;
+
+    int cntBits = 0;
+    int temp = n;
+
+    while(temp){
+        temp = temp/2;
+        cntBits++;
+    }
+
+    // cout<<cntBits<<endl;
+
+    if(cntBits> k){
+        cout<<binaryExponentiation(2, k)<<endl;
+    }
+
+    else if(cntBits == k && k!=1){
+        cout<<binaryExponentiation(2, k) -1<<endl;
+    }
+
+    else{
+        cout<<n+1<<endl;
+    }
+    
+}
+
+signed main(){
+    ios_base::sync_with_stdio(0);
+    cout.tie(0);
+    cin.tie(0);
+    
+    int t;
+    // t=1;
+    cin>>t;
+    while(t--){
+       solve();
+    }
+    return 0;
+}
