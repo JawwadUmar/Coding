@@ -23,6 +23,30 @@ int numberOfSetBits(int n){
 
 
 void solve(){
+    int a, b, c;
+    cin>>a>>b>>c;
+
+    if(a==b){
+        cout<<0<<endl;
+        return;
+    }
+
+    if(a>b){
+        swap(a, b);
+    }
+
+    //b>a
+    double total = a+b;
+    double each = total/2;
+
+    double diff = b - each;
+
+    double ans =diff/c;
+
+    ans = ceil(ans);
+
+    cout<<ans<<endl;
+
     
 }
 

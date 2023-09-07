@@ -3,7 +3,7 @@
 using namespace std;
 #define int long long
 int MOD = 1e9+7;
-int binaryExponentiation(int x, int p){\
+int binaryExponentiation(int x, int p){
     int res = 1;
     while(p){
         if(p%2){
@@ -23,6 +23,26 @@ int numberOfSetBits(int n){
 
 
 void solve(){
+
+    int n;
+    cin>>n;
+
+    vector<int> a(n);
+
+    for(int i= 0; i<n; i++){
+        cin>>a[i];
+    }
+
+    int res = 0;
+
+    for(int i = 0; i<n; i++){
+        int x = a[i];
+        for(int j = i+1; j<n; i++){
+            res+= x * a[j];
+        }
+    }
+
+    cout<<res<<endl;
     
 }
 
