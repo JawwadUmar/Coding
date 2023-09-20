@@ -1,0 +1,1 @@
+{"name":"Local: rgrg","url":"d:\\Projects\\Coding\\rgrg.cpp","tests":[{"id":1695020674466,"input":"1\n3\nG\nL\nRGRG","output":""},{"id":1695021660178,"input":"1\n1\nRGRG","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Coding\\rgrg.cpp","group":"local","local":true}

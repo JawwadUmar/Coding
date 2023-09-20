@@ -3,7 +3,7 @@
 using namespace std;
 #define int long long
 int MOD = 1e9+7;
-int binaryExponentiation(int x, int p){\
+int binaryExponentiation(int x, int p){
     int res = 1;
     while(p){
         if(p%2){
@@ -17,40 +17,61 @@ int binaryExponentiation(int x, int p){\
     return res;
 }
 
-int numberOfSetBits(int n){
-    return __builtin_popcount(n);
-}
-
-
 void solve(){
     int n, m;
     cin>>n>>m;
 
-    if(m == 1){
-        cout<<n<<endl;
+    if(m==1){
+        cout<<0<<endl;
+
+        for(int i = 0; i<n; i++){
+            cout<<0<<endl;
+        }
+
         return;
     }
 
-    if(n == 1){
-        cout<<2<<endl;
-        return;
-    }
+    int res = min(n+1, m);
 
-    int res = min(m, n+1);
+    vector<vector<int>> mat(n, vector<int>(m, 0));
 
     cout<<res<<endl;
-    vector<vector<int>> mat(n, vector<int> (m));
 
+    if(n+1>=m){
 
-    if(m>= n+1){
-        
+        // cout<<"here"<<endl;
+
+        for(int i = 0; i<m-1; i++){
+            for(int j = 0; j<m; j++){
+                // cout<<"1"<<endl;
+                mat[i][j] = (i+j+1)%m;
+            }
+        }
+
+        for(int i=m-1; i<n; i++){
+            for(int j = 0; j<m; j++){
+                // cout<<"2"<<endl;
+                mat[i][j] = mat[i-1][j];
+            }
+        }
+
     }
 
     else{
-
+        
+        for(int i = 0; i<n; i++){
+            for(int j =0; j<m; j++){
+                mat[i][j] = (i+j)%m;
+            }
+        }
     }
 
-
+    for(int i = 0; i<n; i++){
+        for(int j =0; j<m; j++){
+            cout<<mat[i][j]<<" ";
+        }
+        cout<<endl;
+    } 
 }
 
 signed main(){
