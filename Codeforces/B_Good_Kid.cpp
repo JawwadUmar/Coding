@@ -17,16 +17,27 @@ int binaryExponentiation(int x, int p){
     return res;
 }
 
-//ctrl shift B for output
-
-int numberOfSetBits(int n){
-    return __builtin_popcount(n);
-}
-
-
 void solve(){
+    int n;
+    cin>>n;
 
-    
+    vector<int> a(n);
+
+    for(int i= 0; i<n; i++){
+        cin>>a[i];
+    }
+
+    sort(a.begin(), a.end());
+
+    a[0]+= 1;
+
+    int res = 1;
+
+    for(int i = 0; i<n; i++){
+        res = res*a[i];
+    }
+
+    cout<<res<<endl;
     
 }
 
@@ -35,7 +46,8 @@ signed main(){
     cout.tie(0);
     cin.tie(0);
     
-    int t = 1;
+    int t;
+    // t=1;
     cin>>t;
     while(t--){
        solve();

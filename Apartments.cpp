@@ -26,7 +26,20 @@ int numberOfSetBits(int n){
 
 void solve(){
 
+    int n, m, k;
+    cin>>n>>m>>k;
+
+    vector<int> a(n);
     
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+    }
+
+    vector<int> b(m);
+
+    for(int i = 0; i<m; i++){
+        cin>>b[i];
+    }
     
 }
 
@@ -36,7 +49,7 @@ signed main(){
     cin.tie(0);
     
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--){
        solve();
     }

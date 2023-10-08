@@ -25,8 +25,35 @@ int numberOfSetBits(int n){
 
 
 void solve(){
+    int n;
+    cin>>n;
 
-    
+    bool flag = true;
+    int ans = -1;
+    int end = -1;
+
+    for(int i = 0; i<n; i++){
+        int s, e;
+        cin>>s>>e;
+
+        if(i ==0){
+            ans = s;
+            end = e;
+            continue;
+        }
+
+        if(s>= ans && e>=end){
+            flag = false;
+        }
+    }
+
+    if(flag){
+        cout<<ans<<endl;
+    }
+
+    else{
+        cout<<-1<<endl; 
+    }
     
 }
 
@@ -35,7 +62,8 @@ signed main(){
     cout.tie(0);
     cin.tie(0);
     
-    int t = 1;
+    int t;
+    // t=1;
     cin>>t;
     while(t--){
        solve();

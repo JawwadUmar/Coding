@@ -3,7 +3,7 @@
 using namespace std;
 #define int long long
 int MOD = 1e9+7;
-int binaryExponentiation(int x, int p){
+int binaryExponentiation(int x, int p){\
     int res = 1;
     while(p){
         if(p%2){
@@ -17,16 +17,12 @@ int binaryExponentiation(int x, int p){
     return res;
 }
 
-//ctrl shift B for output
-
 int numberOfSetBits(int n){
     return __builtin_popcount(n);
 }
 
 
 void solve(){
-
-    
     
 }
 
@@ -35,7 +31,8 @@ signed main(){
     cout.tie(0);
     cin.tie(0);
     
-    int t = 1;
+    int t;
+    // t=1;
     cin>>t;
     while(t--){
        solve();
