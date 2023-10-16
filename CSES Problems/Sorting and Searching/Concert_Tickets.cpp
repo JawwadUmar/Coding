@@ -26,21 +26,49 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    int n, m, k;
-    cin>>n>>m>>k;
+    int n, m;
+    cin>>n>>m;
 
-    vector<int> a(n);
-    
+    vector<int> prices(n);
+
     for(int i = 0; i<n; i++){
-        cin>>a[i];
+        cin>>prices[i];
     }
 
-    vector<int> b(m);
+    multiset<int> st (prices.begin(), prices.end());
+
+    vector<int> mxPrice(m);
+
+    vector<int> res;
 
     for(int i = 0; i<m; i++){
-        cin>>b[i];
+        cin>>mxPrice[i];
+
+        auto it = st.lower_bound(mxPrice[i]);
+
+        if(*it == mxPrice[i]){
+            res.push_back(mxPrice[i]);
+            st.erase(it);
+            continue;
+        }
+
+        else if(it == st.begin()){
+            res.push_back(-1);
+        }
+
+        else{
+            it--;
+
+            res.push_back(*it);
+
+            st.erase(it);
+        }
     }
-    
+
+
+    for(auto it: res){
+        cout<<it<<endl;
+    }
 }
 
 signed main(){

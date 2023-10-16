@@ -18,46 +18,44 @@ int binaryExponentiation(int x, int p){
 }
 
 //ctrl shift B for output
-// https://codeforces.com/problemset/problem/1882/C
+
+int numberOfSetBits(int n){
+    return __builtin_popcount(n);
+}
+
 
 void solve(){
 
     int n;
     cin>>n;
 
-    vector<int> a(n+1);
+    vector<int> a(n);
 
-    for(int i = 1; i<=n; i++){
+    for(int i = 0; i<n; i++){
         cin>>a[i];
+
     }
 
-    vector<int> suff(n+2, 0);
+    sort(a.begin(), a.end());
 
-    for(int i = n; i>=1; i--){
-        suff[i] = suff[i+1] + max((long long)0, a[i]);
-    }
+    int res = 0;
 
-    // for(int i = 1; i<=n; i++){
-    //     cout<<suff[i]<<" ";
-    // }
-
-    // cout<<endl;
-
-    int ans = 0;
-
-    for(int i = 1; i<=n; i++){
-        
-        if(i%2 !=0){
-            ans = max(ans, suff[i+1]+a[i]);
+    for(int i = 1; i<n; i++){
+        if(a[i] == a[i-1]){
+            a[i]+=1;
+            res+=1;
         }
 
-        else{
-            ans = max(ans, suff[i+1]);
+        else if(a[i] < a[i-1]){
+            int diff = abs(a[i] - a[i-1]);
+            a[i]+= diff+1;
+
+            res+= diff+1;
         }
     }
 
-    cout<<ans<<endl;
-
+    cout<<res<<endl;
+    
 }
 
 signed main(){
@@ -66,7 +64,7 @@ signed main(){
     cin.tie(0);
     
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--){
        solve();
     }

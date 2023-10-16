@@ -18,46 +18,50 @@ int binaryExponentiation(int x, int p){
 }
 
 //ctrl shift B for output
-// https://codeforces.com/problemset/problem/1882/C
+
+int numberOfSetBits(int n){
+    return __builtin_popcount(n);
+}
+
 
 void solve(){
 
     int n;
     cin>>n;
 
-    vector<int> a(n+1);
+    int x = n;
 
-    for(int i = 1; i<=n; i++){
-        cin>>a[i];
-    }
+    x = x-1;
+    x = x-2;
 
-    vector<int> suff(n+2, 0);
-
-    for(int i = n; i>=1; i--){
-        suff[i] = suff[i+1] + max((long long)0, a[i]);
-    }
-
-    // for(int i = 1; i<=n; i++){
-    //     cout<<suff[i]<<" ";
-    // }
-
-    // cout<<endl;
-
-    int ans = 0;
-
-    for(int i = 1; i<=n; i++){
-        
-        if(i%2 !=0){
-            ans = max(ans, suff[i+1]+a[i]);
-        }
-
-        else{
-            ans = max(ans, suff[i+1]);
+    if(x%3 != 0){
+        if(x>0){
+            if(x!= 1 && x!= 2){
+                cout<<"YES"<<endl;
+                cout<<1<<" "<<2<<" "<<x<<endl;
+                return;
+            }
         }
     }
 
-    cout<<ans<<endl;
+    x = n;
 
+    x= x-1;
+    x= x-4;
+
+    if(x%3 != 0){
+        if(x>0){
+            if(x!= 1 && x!= 4){
+                cout<<"YES"<<endl;
+                cout<<1<<" "<<4<<" "<<x<<endl;
+                return;
+            }
+        }
+    }
+
+    cout<<"NO"<<endl;
+    
+    
 }
 
 signed main(){
