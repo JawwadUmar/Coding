@@ -1,3 +1,5 @@
+// https://codeforces.com/contest/1792/problem/B
+
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -28,8 +30,16 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
-    
+    int a1, a2, a3, a4;
+    cin>>a1>>a2>>a3>>a4;
+
+    if(a1 == 0){
+        cout<<1<<endl;
+        return;
+    }
+
+    cout<< a1 + min(a2, a3)*2 + min(a1+1, abs(a3-a2) + a4)<<endl;
+
 }
 
 signed main(){

@@ -29,19 +29,48 @@ void solve(){
     int n;
     cin>>n;
 
-    vector<pair<int, int>> v;
+    vector<int> arrival;
+    vector<int> leaving;
 
-    for(int i = 0; i<n; i++){
+    while (n--)
+    {
         int a, b;
         cin>>a>>b;
 
-        v.push_back({b, a});
+        arrival.push_back(a);
+        leaving.push_back(b);
     }
-    
-    sort(v.begin(), v.end());
 
-    
-    
+    sort(arrival.begin(), arrival.end());
+    sort(leaving.begin(), leaving.end());
+
+    // for(auto it: leaving){
+    //     cout<<it<<" ";
+    // }
+    // cout<<endl;
+
+    int i = 1;
+    int j = 0;
+
+    int cnt = 1;
+    int res = 1;
+
+    n = arrival.size();
+
+    while (i<n)
+    {
+        while (i<n && arrival[i] < leaving[j])
+        {
+            cnt++;
+            i++;
+        }
+
+        res = max(res, cnt);
+        j++;
+        cnt--;
+    }
+
+    cout<<res<<endl;
 }
 
 signed main(){
@@ -50,7 +79,7 @@ signed main(){
     cin.tie(0);
     
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--){
        solve();
     }

@@ -1,59 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class DisjointSet{
-    public:
-    vector<int> rank;
-    vector<int> parent;
-    vector<int> size;
-
-    DisjointSet(int n){
-        rank.resize(n+1, 0);
-        size.resize(n+1, 1);
-        parent.resize(n+1);
-        for(int i = 0; i<=n; i++){
+class DisjointSet {
+public:
+    vector<int> rank, parent, size;
+    DisjointSet(int n) {
+        rank.resize(n + 1, 0);
+        parent.resize(n + 1);
+        size.resize(n + 1);
+        for (int i = 0; i <= n; i++) {
             parent[i] = i;
+            size[i] = 1;
         }
     }
 
-    int findUltimateParent(int node){
-        if(parent[node] == node){
+    int findUltimateParent(int node) {
+        if (node == parent[node])
             return node;
-        }
-
         return parent[node] = findUltimateParent(parent[node]);
     }
 
-    void UnionByRank(int u, int v){
-        int u_p_u = findUltimateParent(u);
-        int u_p_v = findUltimateParent(v);
-
-        if(rank[u_p_u] > rank[u_p_v]){
-            parent[u_p_v] = u_p_u;
+    void UnionByRank(int u, int v) {
+        int ulp_u = findUltimateParent(u);
+        int ulp_v = findUltimateParent(v);
+        if (ulp_u == ulp_v) return;
+        if (rank[ulp_u] < rank[ulp_v]) {
+            parent[ulp_u] = ulp_v;
         }
-
-        else if(rank[u_p_u] < rank[rank[u_p_v]]){
-            parent[u_p_u] = u_p_v;
+        else if (rank[ulp_v] < rank[ulp_u]) {
+            parent[ulp_v] = ulp_u;
         }
-
-        else{
-            parent[u_p_u] = u_p_v;
-            rank[u_p_u]++;
+        else {
+            parent[ulp_v] = ulp_u;
+            rank[ulp_u]++;
         }
     }
 
-    void UnionBySize(int u, int v){
-        int u_p_u = findUltimateParent(u);
-        int u_p_v = findUltimateParent(v);
-
-        if(size[u_p_u] > size[u_p_v]){
-            parent[u_p_v] = u_p_u;
-            size[u_p_v]++;
+    void UnionBySize(int u, int v) {
+        int ulp_u = findUltimateParent(u);
+        int ulp_v = findUltimateParent(v);
+        if (ulp_u == ulp_v) return;
+        if (size[ulp_u] < size[ulp_v]) {
+            parent[ulp_u] = ulp_v;
+            size[ulp_v] += size[ulp_u];
         }
-
-        else{
-            parent[u_p_u] = u_p_v;
-            size[u_p_u]++;
+        else {
+            parent[ulp_v] = ulp_u;
+            size[ulp_u] += size[ulp_v];
         }
     }
 };
