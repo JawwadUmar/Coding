@@ -1,59 +1,142 @@
-#include <iostream>
-#include <vector>
-#include <string>
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
 using namespace std;
 
-// Function to generate palindromic numbers with a given length
-vector<long long> generatePalindromicNumbers(int length) {
-    vector<long long> palindromicNumbers;
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution{
+public:
+
+int calculate(int row, int col, int hop, vector<vector<int>> &mat){
     
-    if (length % 2 == 1) {
-        // Odd length palindromic numbers
-        int start = 1;
-        int end = 9;
-        for (int center = start; center <= end; center++) {
-            string left = to_string(center);
-            string right = left;
-            for (int i = 0; i <= 9; i++) {
-                string palindrome = left + to_string(i) + right;
-                palindromicNumbers.push_back(stoll(palindrome));
-            }
-        }
-    } else {
-        // Even length palindromic numbers
-        int start = 1;
-        int end = 9;
-        for (int i = start; i <= end; i++) {
-            string left = to_string(i);
-            string right = left;
-            palindromicNumbers.push_back(stoll(left + right));
+    int n = mat.size();
+    int m = mat[0].size();
+    
+    int sum = 0;
+    
+    vector<int> delrow = {-hop, 0, hop, 0, -hop, hop, hop, -hop};
+    vector<int> delcol = {0, hop, 0, -hop, hop, hop, -hop, -hop};
+    
+    for(int i = 0; i<8; i++){
+        int nrow = row + delrow[i];
+        int ncol = col + delcol[i];
+        
+        if(nrow>=0 && ncol >=0 && nrow <n && ncol <m){
+            sum+= mat[nrow][ncol];
         }
     }
     
-    return palindromicNumbers;
+    return sum;
 }
 
-int main() {
-    const long long limit = 1000000000000LL; // 10^12
-    vector<long long> palindromicNumbers;
+int calculate(int row, int col, int hop, vector<vector<int>> &mat, vector<vector<int>> &vis){
     
-    for (int length = 1; ; length++) {
-        vector<long long> palindromicLength = generatePalindromicNumbers(length);
-        for (long long num : palindromicLength) {
-            if (num <= limit) {
-                palindromicNumbers.push_back(num);
-            } else {
-                break;
-            }
+    vis[row][col] =1;
+    
+    if(hop == 0){
+        return mat[row][col];
+    }
+    
+    int n = mat.size();
+    int m = mat[0].size();
+    
+    int sum = 0;
+    
+    vector<int> delrow = {-1, 0, 1, 0, -1, 1, 1, -1};
+    vector<int> delcol = {0, 1, 0, -1, 1, 1, -1, -1};
+    
+    for(int i = 0; i<8; i++){
+        int nrow = row + delrow[i];
+        int ncol = col + delcol[i];
+        
+        if(nrow>=0 && ncol >=0 && nrow <n && ncol <m && vis[nrow][ncol] == 0) {
+            sum+= calculate(nrow, ncol, hop-1, mat, vis);
         }
     }
     
-    cout << "Palindromic numbers up to 10^12:" << endl;
-    for (long long num : palindromicNumbers) {
-        cout << num << " ";
-    }
-    
-    cout << endl;
+    return sum;
+}
 
+
+    vector<int> matrixSum(int n, int m, vector<vector<int>> mat, int q, vector<int> queries[])
+    {
+        
+    vector<int> res;
+    vector<int> delrow = {-1, 0, 1, 0, -1, 1, 1, -1};
+    vector<int> delcol = {0, 1, 0, -1, 1, 1, -1, -1};
+        
+        for(int i = 0; i<q; i++){
+            int hop = queries[i][0];
+            int row = queries[i][1];
+            int col = queries[i][2];
+            
+            if(hop ==1){
+            int x = calculate(row, col, hop, mat);
+            res.push_back(x);
+            continue;
+            
+            }
+            
+            vector<vector<int>> vis (n, vector<int> (m, 0));
+            int x = 0;
+            
+            for(int i = 0; i<8; i++){
+            int nrow = row + delrow[i];
+            int ncol = col + delcol[i];
+        
+          if(nrow>=0 && ncol >=0 && nrow <n && ncol <m) {
+           
+           vis[nrow][ncol] = 1;
+         }
+        }
+            
+            
+            
+            for(int i = 0; i<8; i++){
+            int nrow = row + delrow[i];
+            int ncol = col + delcol[i];
+        
+        if(nrow>=0 && ncol >=0 && nrow <n && ncol <m) {
+            x+= calculate(nrow, ncol, hop-1, mat, vis);
+        }
+        }
+        
+        res.push_back(x);
+        }
+        
+        return res;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n, m, q, ty, i, j;
+        cin>>n>>m;
+        vector<vector<int>> mat(n, vector<int>(m, 0));
+        for(int i = 0;i < n;i++)
+            for(int j = 0;j < m;j++)
+                cin>>mat[i][j];
+        cin>>q;
+        vector<int> queries[q];
+        for(int k = 0;k < q;k++){
+            cin>>ty>>i>>j;
+            queries[k].push_back(ty);
+            queries[k].push_back(i);
+            queries[k].push_back(j);
+        }
+        
+        Solution ob;
+        vector<int> ans = ob.matrixSum(n, m, mat, q, queries);
+        for(int u: ans)
+            cout<<u<<"\n";
+    }
     return 0;
 }
+// } Driver Code Ends

@@ -4,74 +4,115 @@ using namespace std;
 #define endl '\n'
 
 void solve(){
-    int n;
-    cin>>n;
+    int n, q;
+    cin>>n>>q;
 
-    int m;
-    cin>>m;
-
-    vector<pair<int, int>> v;
     vector<int> a(n);
 
+    vector<pair<int, int>> v;
+    unordered_map<int, int> mp;
+
     for(int i = 0; i<n; i++){
-        int x;
-        cin>>x;
-
-        a[i] = x;
-
-        v.push_back({x, i+1});
+        cin>>a[i];
+        v.push_back({a[i], i});
+        mp[a[i]] = i;
     }
 
     sort(v.begin(), v.end());
+    int cnt = 1;
 
-    int cnt =1;
+    for(int i = 1; i<v.size(); i++){
 
-    int i = 1;
-    int lastidx = v[0].second;
-
-    while (i<n)
-    {
-        if(v[i].second < lastidx){
+        if(v[i].second < v[i-1].second){
             cnt++;
-        } 
-
-        lastidx = v[i].second;
-        i++;
+        }
     }
 
-    while (m--)
-    {
-        int ind1, ind2;
-        cin>>ind1>>ind2;
+    // cout<<cnt<<endl;
 
-        ind1--;
-        ind2--;
+    for(int i = 0; i<q; i++){
+        int l, r;
+        cin>>l>>r;
 
-        if(ind1 > ind2){
-            swap(ind1, ind2);
+        l--;
+        r--;
+        set<pair<int, int>> st;
+
+        if(a[l]-1 > 0){
+            st.insert({a[l] -1, a[l]});
         }
 
-        if(a[ind1] > a[ind2]){
-            cnt--;
-            cout<<cnt<<endl;
+        if(a[r]-1 > 0){
+            st.insert({a[r]-1, a[r]});
         }
 
-        else{
-            cnt++;
-            cout<<cnt<<endl;
+        if(a[l] +1 <=n){
+            st.insert({a[l], a[l]+1});
         }
 
-        swap(a[ind1], a[ind2]);
-
-        for(auto it: a){
-            cout<<it<<" ";
+        if(a[r] +1 <= n){
+            st.insert({a[r], a[r]+1});
         }
-        cout<<endl;
+
+        // for(auto it: st){
+        //     cout<<it.first<<" "<<it.second<<endl;
+        // }
+
+        int initialScore = 0;
+
+        for(auto it: st){
+            int num1 = it.first;
+            int num2 = it.second;
+
+            int i1 = mp[num1];
+            int i2 = mp[num2];
+
+
+            if(i1> i2){
+                initialScore--;
+            }
+
+            else{
+                initialScore++;
+            }
+        }
+
+        mp[a[l]] = r;
+        mp[a[r]] = l;
+
+        swap(a[l], a[r]);
+
+        int finaScore = 0;
+
+        for(auto it: st){
+            int num1 = it.first;
+            int num2 = it.second;
+
+            int i1 = mp[num1];
+            int i2 = mp[num2];
+
+
+            if(i1> i2){
+                finaScore--;
+            }
+
+            else{
+                finaScore++;
+            }
+        }
+
+        // cout<<initialScore<<" "<<finaScore<<endl;
+
+        int diff = (finaScore - initialScore)/2;
+
+        // cout<<diff<<endl;
+        cnt-= diff;
+
+        cout<<cnt<<endl;
+        
     }
-    
-    
-    
 }
+
 
 signed main(){
     ios_base::sync_with_stdio(0);
@@ -79,5 +120,4 @@ signed main(){
     cout.tie(0);
 
     solve();
-
 }
