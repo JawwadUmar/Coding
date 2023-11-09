@@ -13,31 +13,17 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 
 #define int long long
 
-int binaryExponentiation(int x, int p){
-    int res = 1;
-    while(p){
-        if(p%2){
-            res = (res * x)%MOD;
-        }
-
-        x = (x*x)%MOD;
-        p = p/2;
-    }
-    
-    return res;
-}
-
-//ctrl shift B for output
-
-int numberOfSetBits(int n){
-    return __builtin_popcount(n);
-}
-
-
 void solve(){
 
-    
-    
+    int n, k;
+    cin>>n>>k;
+
+    ordered_set<int> os;
+
+    cout<<n<<endl;
+
+
+
 }
 
 signed main(){

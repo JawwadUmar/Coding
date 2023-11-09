@@ -1,142 +1,26 @@
-//{ Driver Code Starts
-// Initial Template for C++
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace __gnu_pbds;
 
 #include <bits/stdc++.h>
 using namespace std;
 
-// } Driver Code Ends
-// User function Template for C++
+typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 
-class Solution{
-public:
+int main() {
+    ordered_set os;
+    os.insert(1);
+    os.insert(2);
+    os.insert(3);
 
-int calculate(int row, int col, int hop, vector<vector<int>> &mat){
-    
-    int n = mat.size();
-    int m = mat[0].size();
-    
-    int sum = 0;
-    
-    vector<int> delrow = {-hop, 0, hop, 0, -hop, hop, hop, -hop};
-    vector<int> delcol = {0, hop, 0, -hop, hop, hop, -hop, -hop};
-    
-    for(int i = 0; i<8; i++){
-        int nrow = row + delrow[i];
-        int ncol = col + delcol[i];
-        
-        if(nrow>=0 && ncol >=0 && nrow <n && ncol <m){
-            sum+= mat[nrow][ncol];
-        }
-    }
-    
-    return sum;
-}
+    // Find the order of an element (0-based)
+    int order_of_2 = *os.find_by_order(1); // This returns 2
 
-int calculate(int row, int col, int hop, vector<vector<int>> &mat, vector<vector<int>> &vis){
-    
-    vis[row][col] =1;
-    
-    if(hop == 0){
-        return mat[row][col];
-    }
-    
-    int n = mat.size();
-    int m = mat[0].size();
-    
-    int sum = 0;
-    
-    vector<int> delrow = {-1, 0, 1, 0, -1, 1, 1, -1};
-    vector<int> delcol = {0, 1, 0, -1, 1, 1, -1, -1};
-    
-    for(int i = 0; i<8; i++){
-        int nrow = row + delrow[i];
-        int ncol = col + delcol[i];
-        
-        if(nrow>=0 && ncol >=0 && nrow <n && ncol <m && vis[nrow][ncol] == 0) {
-            sum+= calculate(nrow, ncol, hop-1, mat, vis);
-        }
-    }
-    
-    return sum;
-}
+    // Find the number of elements less than a value
+    int count_less_than_3 = os.order_of_key(3); // This returns 2
 
+    cout<<order_of_2<<endl;
 
-    vector<int> matrixSum(int n, int m, vector<vector<int>> mat, int q, vector<int> queries[])
-    {
-        
-    vector<int> res;
-    vector<int> delrow = {-1, 0, 1, 0, -1, 1, 1, -1};
-    vector<int> delcol = {0, 1, 0, -1, 1, 1, -1, -1};
-        
-        for(int i = 0; i<q; i++){
-            int hop = queries[i][0];
-            int row = queries[i][1];
-            int col = queries[i][2];
-            
-            if(hop ==1){
-            int x = calculate(row, col, hop, mat);
-            res.push_back(x);
-            continue;
-            
-            }
-            
-            vector<vector<int>> vis (n, vector<int> (m, 0));
-            int x = 0;
-            
-            for(int i = 0; i<8; i++){
-            int nrow = row + delrow[i];
-            int ncol = col + delcol[i];
-        
-          if(nrow>=0 && ncol >=0 && nrow <n && ncol <m) {
-           
-           vis[nrow][ncol] = 1;
-         }
-        }
-            
-            
-            
-            for(int i = 0; i<8; i++){
-            int nrow = row + delrow[i];
-            int ncol = col + delcol[i];
-        
-        if(nrow>=0 && ncol >=0 && nrow <n && ncol <m) {
-            x+= calculate(nrow, ncol, hop-1, mat, vis);
-        }
-        }
-        
-        res.push_back(x);
-        }
-        
-        return res;
-    }
-};
-
-//{ Driver Code Starts.
-
-int main(){
-    int t;
-    cin>>t;
-    while(t--){
-        int n, m, q, ty, i, j;
-        cin>>n>>m;
-        vector<vector<int>> mat(n, vector<int>(m, 0));
-        for(int i = 0;i < n;i++)
-            for(int j = 0;j < m;j++)
-                cin>>mat[i][j];
-        cin>>q;
-        vector<int> queries[q];
-        for(int k = 0;k < q;k++){
-            cin>>ty>>i>>j;
-            queries[k].push_back(ty);
-            queries[k].push_back(i);
-            queries[k].push_back(j);
-        }
-        
-        Solution ob;
-        vector<int> ans = ob.matrixSum(n, m, mat, q, queries);
-        for(int u: ans)
-            cout<<u<<"\n";
-    }
     return 0;
 }
-// } Driver Code Ends
