@@ -42,7 +42,39 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int n, target;
+    cin>>n>>target;
+
+    vector<int> a(n);
+
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+    }
+
+    map<int, pair<int, int>> mp;
+
+    for(int i = 0; i<n; i++){
+
+        for(int j = i+1; j<n; j++){
+            int sum = a[i] + a[j];
+
+            int req = target - sum;
+
+            if(mp.find(req) != mp.end()){
+                int k = mp[req].first;
+                int l = mp[req].second;
+
+                cout<<i+1<<" "<<j+1<<" "<<k+1<<" "<<l+1<<endl;
+                return;
+            }
+        }
+
+        for(int j = 0; j<i; j++){
+            mp[a[i] + a[j]] = make_pair(i, j);
+        }
+    }
+
+    cout<<"IMPOSSIBLE"<<endl;
     
 }
 
@@ -52,7 +84,7 @@ signed main(){
     cin.tie(0);
     
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--){
        solve();
     }

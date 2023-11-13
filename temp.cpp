@@ -1,26 +1,43 @@
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
-using namespace __gnu_pbds;
-
 #include <bits/stdc++.h>
 using namespace std;
+int MOD = 1e9+7;
+#define endl '\n'
+#define int long long
 
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 
-int main() {
-    ordered_set os;
-    os.insert(1);
-    os.insert(2);
-    os.insert(3);
+void solve(){
 
-    // Find the order of an element (0-based)
-    int order_of_2 = *os.find_by_order(1); // This returns 2
+    int n;
+    cin>>n;
 
-    // Find the number of elements less than a value
-    int count_less_than_3 = os.order_of_key(3); // This returns 2
+    vector<int> a(n);
 
-    cout<<order_of_2<<endl;
+    vector<int> dp(n+2, 0);
 
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+    }
+
+    for(int i = n-1; i>=0; i--){
+        int take = a[i] + dp[i+2];
+        int not_take = dp[i+1];
+
+        dp[i] = max(take, not_take);
+    }
+    
+    cout<<dp[0]<<endl;
+    
+}
+
+signed main(){
+    ios_base::sync_with_stdio(0);
+    cout.tie(0);
+    cin.tie(0);
+    
+    int t;
+    cin>>t;
+    while(t--){
+       solve();
+    }
     return 0;
 }
