@@ -1,43 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
-int MOD = 1e9+7;
-#define endl '\n'
-#define int long long
 
+    int longestCommonPrefix(vector<string>& v) {
+        string ans="";
+        sort(v.begin(),v.end());
+        int n=v.size();
+        string first=v[0],last=v[n-1];
+        for(int i=0;i<min(first.size(),last.size());i++){
+            if(first[i]!=last[i]){
+                return ans.size();
+            }
+            ans+=first[i];
+        }
 
-void solve(){
-
-    int n;
-    cin>>n;
-
-    vector<int> a(n);
-
-    vector<int> dp(n+2, 0);
-
-    for(int i = 0; i<n; i++){
-        cin>>a[i];
+        return ans.size();
     }
 
-    for(int i = n-1; i>=0; i--){
-        int take = a[i] + dp[i+2];
-        int not_take = dp[i+1];
+    int main(){
+      vector<string> v = {"abc", "abd", "ab"};
+      cout<<longestCommonPrefix(v);
 
-        dp[i] = max(take, not_take);
     }
-    
-    cout<<dp[0]<<endl;
-    
-}
-
-signed main(){
-    ios_base::sync_with_stdio(0);
-    cout.tie(0);
-    cin.tie(0);
-    
-    int t;
-    cin>>t;
-    while(t--){
-       solve();
-    }
-    return 0;
-}

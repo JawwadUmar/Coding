@@ -1,21 +1,13 @@
-def solve():
-    n = int(input())
-    v = []
+class persons:
 
-    for _ in range(n):
-        dur, dead = map(int, input().split())
-        v.append((dur, dead))
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        print(f"Hello my name is {self.name} and my age is {self.age}")
 
-    v.sort()
 
-    res = 0
-    pref = 0
-    for i in range(n):
-        pref += v[i][0]
-        res += v[i][1] - pref
+person1 = persons("Alice", 25)
 
-    print(res)
-
-# Driver code
-if __name__ == "__main__":
-    solve()
+person1.introduce()
