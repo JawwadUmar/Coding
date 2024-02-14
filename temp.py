@@ -1,13 +1,11 @@
-class persons:
+import easyocr
 
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-    
-    def introduce(self):
-        print(f"Hello my name is {self.name} and my age is {self.age}")
+# Create an OCR reader
+reader = easyocr.Reader(['en'], gpu=True)  # Specify the language and use GPU if available
 
+# Perform OCR on an image
+result = reader.readtext('room2.jpeg')
 
-person1 = persons("Alice", 25)
-
-person1.introduce()
+# Display the result
+for detection in result:
+    print(detection[1])  # The text detected
