@@ -39,10 +39,39 @@ int numberOfSetBits(int n){
     return __builtin_popcount(n);
 }
 
-
 void solve(){
 
+    string a, b;
+    cin>>a; //substring
+    cin>>b; //subsequence
+
+    string ans = a;
+
+    //some letters in a so i can have b as a subsq
+    int mx = b.size();
     
+    
+
+    for(int j = 0; j<b.size(); j++){
+        int i = j;
+        int x = b.size();
+        for(auto it: a){
+        if(it == b[i]){
+            i++;
+            x--;
+        }
+        }
+
+        mx = min(mx, x);
+
+
+    }
+    
+
+    cout<<a.size() + mx<<endl;
+    
+
+
     
 }
 

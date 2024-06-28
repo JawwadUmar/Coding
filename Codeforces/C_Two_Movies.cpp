@@ -39,11 +39,74 @@ int numberOfSetBits(int n){
     return __builtin_popcount(n);
 }
 
-
 void solve(){
 
-    
-    
+    int n;
+    cin>>n;
+
+    vector<int> a(n);
+    vector<int> b(n);
+
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+    }
+    for(int i = 0; i<n; i++){
+        cin>>b[i];
+    }
+
+    //a -> -1 0 1
+    //b -> -1 0 1
+
+    int bothNegative = 0;
+    int bothPositive = 0;
+    int A = 0;
+    int B = 0;
+
+    for(int i = 0; i<n; i++){
+        if(a[i] ==-1 && b[i] == -1){
+            bothNegative++;
+        }
+
+        else if(a[i] ==1 && b[i] ==1){
+            bothPositive++;
+        }
+
+        else if(a[i] ==1 && b[i]<=0){
+            A++;
+        }
+
+        else if(a[i]<=0 && b[i] ==1){
+            B++;
+        }
+    }
+
+    while (bothNegative)
+    {
+        if(A>B){
+            A--;
+        }
+
+        else{
+            B--;
+        }
+
+        bothNegative--;
+    }
+
+    while (bothPositive)
+    {
+        if(A<B){
+            A++;
+        }
+
+        else{
+            B++;
+        }
+
+        bothPositive--;
+    }
+
+    cout<<min(A, B)<<endl;
 }
 
 signed main(){

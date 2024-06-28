@@ -61,36 +61,38 @@ void solve(){
     }
 
     int count = 0;
-    int ans = 1;
+    int ans = 0;
 
     if(mn<0){
-        // cout<<prefSum.back() + 2*abs(mn)<<endl;
 
-        //how many mns occur ? 
-        for(auto it: prefSum){
-            if(it == mn){
-                count++;
+        vector<int> countPos (n, 0);
+        for(int i = 0; i<prefSum.size(); i++){
+            if(prefSum[i] >=0){
+                countPos[i]+=1;
             }
         }
 
-         ans = binaryExponentiation(2, count-1);
-    }
+        for(int i = 1; i<n; i++){
+            countPos[i]+= countPos[i-1];
+        }
 
-    else{
-        // cout<<prefSum.back()<<endl;
-    }
+        // for(auto it: countPos){
+        //     cout<<it<<" ";
+        // }
+        // cout<<endl;
 
-    //number of ways to get the same answer .... 
-    //there were some points where using option 1 and 2 is the same thing
-    for(auto it: prefSum){
-        if(it >=0){
-            ans = (ans*2)%MOD;
+        for(int i = 0; i<n; i++){
+            if(prefSum[i] == mn){
+                ans= (ans + binaryExponentiation(2, countPos[i] +n-i-1))%MOD;
+            }
         }
     }
 
-    cout<<ans<<endl;
+    else{
+        ans = binaryExponentiation(2, n);
+    }
 
-    
+    cout<<ans<<endl;
 }
 
 signed main(){
