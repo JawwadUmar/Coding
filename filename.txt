@@ -1,0 +1,20 @@
+John Dalton (1766-1844): He proposed his first modern atomic theory in 1803. It stated the following: 
+Elements consist of indivisible atoms.
+Atoms of a given element are identical in mass and properties.
+Compounds are formed by the combination of atoms of different elements in fixed ratios.
+Chemical reactions involve the rearrangement of atoms.
+
+Dmitri Mendeleev (1834-1907): He created the periodic table in 1869. He predicted the existence and properties of undiscovered elements, which were later confirmed.
+
+J.J. Thomson (1856-1940):  Discovered the electron in 1897.
+He proposed the "plum pudding" model where electrons are embedded in a positively charged sphere. He demonstrated that atoms are divisible and contain smaller particles (electrons).
+
+Robert Millikan (1868-1953): He measured the charge of the electron in 1909 with the oil drop experiment. He also calculated the mass of the electron using Thomson's charge-to-mass ratio.
+
+Ernest Rutherford (1871-1937): He discovered the atomic nucleus in 1911 through the gold foil experiment. He demonstrated that most of the atom's mass is concentrated in the nucleus.
+
+Niels Bohr (1885-1962): He developed the Bohr model of the atom in 1913. It stated that electrons orbit the nucleus in fixed energy levels (quantized orbits) and they can jump between orbits, emitting or absorbing energy as photons.
+
+James Chadwick (1891-1974): He discovered the neutron in 1932. It explained the additional mass in the nucleus that was not accounted for by protons alone.
+
+Erwin Schrödinger (1887-1961): He developed the Schrödinger equation in 1926. It introduced the concept of orbitals as regions of space where electrons are likely to be found.
