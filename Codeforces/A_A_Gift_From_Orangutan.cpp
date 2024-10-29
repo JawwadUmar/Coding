@@ -45,27 +45,19 @@ void solve(){
     int n;
     cin>>n;
 
-    int i = 0;
-
-    vector<int> v;
-    v.push_back(n);
-
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
-    }
-    cout<<endl;
+    vector<int> a(n);
     
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+    }
+
+    sort(a.begin(), a.end());
+    int x = a[0];
+    int y = a.back();
+
+    // cout<<x<<" "<<y<<endl;
+
+    cout<<(n-1)*(y-x)<<endl;
 }
 
 signed main(){

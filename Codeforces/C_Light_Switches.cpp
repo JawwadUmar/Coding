@@ -42,30 +42,57 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    int n;
-    cin>>n;
+    int n, k;
+    cin>>n>>k;
 
-    int i = 0;
+    vector<int> a(n);
+    int mx = 0;
 
-    vector<int> v;
-    v.push_back(n);
-
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+        mx = max(mx, a[i]);
     }
-    cout<<endl;
-    
+
+    vector<int> left, right;
+
+    for(int i = 0; i<n; i++){
+        int l = (a[i])%(2*k);
+        int r = (a[i] + k -1)%(2*k);
+
+        left.push_back(l);
+
+        if(r <l){
+            r+= 2*k;
+        }
+
+        right.push_back(r);
+    }
+
+    int x = left[0];
+    int y = right[0];
+
+    for(int i = 0; i<n; i++){
+        cout<<left[i]<<" "<<right[i]<<endl;
+    }
+
+    for(int i = 1; i<n; i++){
+        
+        if(x> right[i] || y<left[i]){
+            cout<<-1<<endl;
+            return;
+        }
+
+        x = max(x, left[i]);
+        y = min(y, right[i]);
+    }
+
+    //rem of x
+    int temp_rem = mx%(2*k);
+    int toadd = x - temp_rem;
+
+    cout<<mx+toadd<<endl;
+
+
 }
 
 signed main(){

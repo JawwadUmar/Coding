@@ -45,26 +45,66 @@ void solve(){
     int n;
     cin>>n;
 
-    int i = 0;
+    vector<int> a(n);
+    int odd = 0;
+    int even = 0;
+    int greatestOdd = -1;
 
-    vector<int> v;
-    v.push_back(n);
-
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+        if(a[i]%2){
+            odd++;
+            greatestOdd = max(a[i], greatestOdd);
         }
-        i++;
-    }   
 
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
+        else{
+            even++;
+        }
     }
-    cout<<endl;
+
+
+    if(odd == n || even == n){
+        cout<<0<<endl;
+        return;
+    }
+
+    int ans = 0;
+
+    while (1)
+    {
+        int cnt = 0;
+
+        for(auto &it: a){
+        if(it%2 == 0){
+                if(it < greatestOdd){
+                    cnt++;
+                    it = it + greatestOdd;
+                    greatestOdd = it;
+                }
+            }
+        }
+
+        if(cnt == 0){
+            break;
+        }
+
+        ans+=cnt;
+
+    }
+
+    even = 0;
+
+    for(auto it: a){
+        if(it%2 == 0){
+            even++;
+        }
+    }
+
+    if(even){
+        ans++;
+    }
+
+    cout<<ans + even<<endl;
     
 }
 

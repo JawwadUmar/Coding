@@ -42,29 +42,11 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    int n;
-    cin>>n;
+    int n, m, k;
+    cin>>n>>m>>k;
 
-    int i = 0;
-
-    vector<int> v;
-    v.push_back(n);
-
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
-    }
-    cout<<endl;
+    cout<<min(k, m)*min(k, n)<<endl;
+    
     
 }
 

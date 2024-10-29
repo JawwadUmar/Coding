@@ -39,33 +39,43 @@ int numberOfSetBits(int n){
     return __builtin_popcount(n);
 }
 
+// bool f(int prev, int idx, int a, int b, int c){
+//     int n = v.size();
+
+//     if(idx == n){
+//         return true;
+//     }
+
+//     bool flagChoose = false;
+//     bool flagNotChoose = false;
+
+//     if(prev == -1){
+//         flaga = f(idx+1, )
+//     }
+// }
+
 
 void solve(){
 
-    int n;
-    cin>>n;
+    int a, b, c;
+    cin>>a>>b>>c;
 
-    int i = 0;
+    vector<int> v = {a, b, c};
+    sort(v.begin(), v.end());
 
-    vector<int> v;
-    v.push_back(n);
+    a = v[0];
+    b = v[1];
+    c = v[2];
 
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
+    if(c -b > 1 + a){
+        cout<<"NO"<<endl;
     }
-    cout<<endl;
-    
+
+    else{
+        cout<<"YES"<<endl;
+    }
+
+   
 }
 
 signed main(){

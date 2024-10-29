@@ -45,26 +45,61 @@ void solve(){
     int n;
     cin>>n;
 
-    int i = 0;
+    vector<int> a(n);
+    vector<int> b(n);
 
-    vector<int> v;
-    v.push_back(n);
-
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
     }
-    cout<<endl;
+
+    for(int i = 0; i<n; i++){
+        cin>>b[i];
+    }
+
+    int i1 = 0;
+    int i2 = n-1;
+
+    int j1 = 0;
+    int j2 = n-1;
+
+    while (1)
+    {
+        if(i1 == i2){
+            cout<<"Bob"<<endl;
+            return;
+        }
+        
+        if((a[i1] != b[j1]) && (a[i1] != b[j2])){
+            cout<<"Alice"<<endl;
+            return;
+        }
+
+        if((a[i2] != b[j1]) && (a[i2] != b[j2])){
+            cout<<"Alice"<<endl;
+            return;
+        }
+
+        if(a[i1] == b[j1]){
+            i1++;
+            j1++;
+        }
+
+        else if(a[i1] == b[j2]){
+            i1++;
+            j2--;
+        }
+
+        else if(a[i2] == b[j1]){
+            i2--;
+            j1++;
+        }
+
+        else if(a[i2] == b[j2]){
+            i2--;
+            j2--;
+        }
+    }
+    
     
 }
 

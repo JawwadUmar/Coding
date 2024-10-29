@@ -45,27 +45,22 @@ void solve(){
     int n;
     cin>>n;
 
-    int i = 0;
+    string s;
+    cin>>s;
 
-    vector<int> v;
-    v.push_back(n);
+    map<char, int> mp;
 
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
+    for(int i = 0; i<4*n; i++){
+        mp[s[i]]++;
     }
-    cout<<endl;
-    
+
+    int ans = 0;
+    ans += min(mp['A'], n);
+    ans+= min(mp['B'], n);
+    ans+= min(mp['C'], n);
+    ans+= min(mp['D'], n);
+
+    cout<<ans<<endl;
 }
 
 signed main(){

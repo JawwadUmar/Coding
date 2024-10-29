@@ -45,26 +45,25 @@ void solve(){
     int n;
     cin>>n;
 
-    int i = 0;
+    string s;
+    cin>>s;
 
-    vector<int> v;
-    v.push_back(n);
-
-    while((n -(1<<i)) > 0){
-
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
+    int cnt1 = 0;
+    for(auto &it: s){
+        if(it == '1'){
+            cnt1++;
         }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
-
-    for(auto it: v){
-        cout<<it<<" ";
     }
-    cout<<endl;
+
+    int cnt2 = n - cnt1;
+
+    if(cnt2 > cnt1){
+        cout<<"NO"<<endl;
+    }
+    
+    else{
+        cout<<"YES"<<endl;
+    }
     
 }
 

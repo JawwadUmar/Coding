@@ -39,33 +39,43 @@ int numberOfSetBits(int n){
     return __builtin_popcount(n);
 }
 
+int calculateDistance(int x1, int y1, int x2, int y2){
+    int X = (x1-x2)*(x1-x2);
+    int Y = (y1-y2)*(y1-y2);
+
+    return X+Y;
+}
 
 void solve(){
 
     int n;
     cin>>n;
 
-    int i = 0;
+    vector<pair<int, int>> v;
 
-    vector<int> v;
-    v.push_back(n);
+    for(int i = 0; i<n; i++){
+        int x, y;
+        cin>>x>>y;
 
-    while((n -(1<<i)) > 0){
+        v.push_back({x, y});
+    }
 
-        if(n & (n -(1<<i)) == (n -(1<<i))){
-            v.push_back((n -(1<<i)));
-        }
-        i++;
-    }   
-
-    reverse(v.begin(), v.end());
-    cout<<v.size()<<endl;
+    int xs, ys, xt, yt;
+    cin>>xs>>ys>>xt>>yt;
+    
+    int d = calculateDistance(xs, ys, xt, yt);
 
     for(auto it: v){
-        cout<<it<<" ";
+        int x = it.first;
+        int y = it.second;
+
+        if(d >= calculateDistance(xt, yt, x, y)){
+            cout<<"NO"<<endl;
+            return;
+        }
     }
-    cout<<endl;
-    
+
+    cout<<"YES"<<endl;
 }
 
 signed main(){
