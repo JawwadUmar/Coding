@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "A_Sliding",
+            "request": "launch",
+            "mainClass": "A_Sliding",
+            "projectName": "Coding_6966eb06"
+        },
+        {
             "name": "C/C++: gcc.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",
