@@ -1,92 +1,95 @@
-#include <iostream>
+
 #include <bits/stdc++.h>
 using namespace std;
-int MOD = 1e9+7;
-#define endl '\n'
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
 
-
-template <typename T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-template <typename T>
-using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-#define int long long
-
-
-
-
-
-
-//ctrl shift B for output
-
-int numberOfSetBits(int n){
-    return __builtin_popcount(n);
-}
-
-
-int binaryExponentiation(int x, int p){
-    int res = 1;
-    while(p){
-        if(p%2){
-            res = (res * x)%MOD;
+class Solution {
+    public:
+        bool findBobsPath(int node, vector<int> &res, vector<int> &vis, vector<int> adj[]){
+            if(node == 0){
+                return true;
+            }
+    
+            vis[node] = 1;
+    
+            for(auto it: adj[node]){
+                if(!vis[it]){
+                    res.push_back(it);
+                    bool take = findBobsPath(it, res, vis, adj);
+                    if(take){
+                        return true;
+                    }
+    
+                    res.pop_back();
+                }
+            }
+    
+            return false;
         }
-
-        x = (x*x)%MOD;
-        p = p/2;
-    }
     
-    return res;
-}
-
-int factorial(int n, vector<int> &fac){
-    if(n<=2){
-        return n;
-    }
-
-    if(fac[n] != -1){
-        return fac[n];
-    }
-
-    return (n*factorial(n-1, fac))%MOD;
-}
+        int mostProfitablePath(int Alice_node, int Bob_node_index, vector<int> &bobs_path, vector<int>& amount, vector<int> &vis, vector<int> adj[]){
 
 
-int distanceSum(int m, int n, int k) {
+            vis[Alice_node] = 1;
+            int Bob_node = -1;
+            if(Bob_node_index < bobs_path.size()){
+                Bob_node = bobs_path[Bob_node_index];
+            }
 
-    vector<int> fac(n*m+1, -1);
-    int numerator = factorial(m*n -2, fac);
-    int B = factorial(k-2, fac);
-    int C = factorial(m*n -2 - (k-2), fac);
-
-    int denominator = (B*C)%MOD;
-
-    int ncr = (numerator*binaryExponentiation(denominator, MOD-2))%MOD;
-    int x = (((((n*n)%MOD*m)%MOD*((m*m)%MOD-1))%MOD))%MOD;
-    int y = (((((m*m)%MOD*n)%MOD*((n*n)%MOD-1))%MOD))%MOD;
-
-    return (((x+y)*ncr)%MOD * binaryExponentiation(6, MOD-2))%MOD;
-
-}
-
-void solve(){
-
+            int x = 0;
+            int alice_pay = amount[Alice_node];
+            int bob_pay;
     
-    
-}
+            if(Alice_node == Bob_node){
+                x+= amount[Alice_node]/2;
+            }
 
-signed main(){
-    ios_base::sync_with_stdio(0);
-    cout.tie(0);
-    cin.tie(0);
+            else{
+                x+= amount[Alice_node];
+            }
+
+            amount[Alice_node] = 0;
+
+            if(Bob_node != -1){
+                bob_pay = amount[Bob_node];
+                amount[Bob_node] = 0;
+            }
+
+            int res = -1e9;
+
+            for(auto it:adj[Alice_node]){
+                if(!vis[it]){
+                    res = max(res, x + mostProfitablePath(it, Bob_node_index, bobs_path, amount, vis, adj));
+                }
+            }
+
+            amount[Alice_node] = alice_pay;
+            if(Bob_node != -1){
+                amount[Bob_node] = bob_pay;
+            }
+
+            return 0;
+
+        }
+        int mostProfitablePath(vector<vector<int>>& edges, int bob, vector<int>& amount) {
+            int n = edges.size() + 1;
+            vector<int> adj[n];
+            for(auto it: edges){
+                int u = it[0];
+                int v = it[1];
     
-    int t = 1;
-    cin>>t;
-    while(t--){
-       solve();
-    }
-    return 0;
-}
+                adj[u].push_back(v);
+                adj[v].push_back(u);
+            }
+    
+            vector<int> bobs_path;
+            vector<int> vis(n, 0);
+            bobs_path.push_back(bob);
+            findBobsPath(bob, bobs_path, vis, adj);
+    
+            fill(vis.begin(), vis.end(), 0);
+    
+            int res = mostProfitablePath(0, 0, bobs_path, amount, vis, adj);
+    
+            return res;
+        }
+    };

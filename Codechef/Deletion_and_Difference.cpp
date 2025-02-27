@@ -45,8 +45,54 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
-    
+    int n;
+    cin>>n;
+
+    vector<int> a(n);
+    map<int, int> mp;
+
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+        mp[a[i]]++;
+    }
+
+    bool flag = false;
+
+    for(auto it: mp){
+        if(it.second > 1){
+            flag = true;
+            break;
+        }
+    }
+
+    if(flag == false){
+
+        cout<<n<<endl;
+        return;
+    }
+
+    flag = false;
+    int cnt = 0;
+    int x = 0;
+
+    for(auto it: mp){
+
+        if(it.first != 0){
+            cnt+= (it.second)%2;
+            x+= (it.second)/2; //no of zeroes produced
+        }
+        
+    }
+
+    // cout<<x<<endl;
+
+    int totalZeroes = x + mp[0];
+    if(totalZeroes > 1){
+        totalZeroes = 1;
+    }
+
+    cout<<cnt + totalZeroes<<endl;
+
 }
 
 signed main(){

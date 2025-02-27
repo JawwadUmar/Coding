@@ -45,7 +45,22 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int n;
+    cin>>n;
+
+    if(n%2 == 0){
+        cout<<n/2 + 1<<endl;
+    }
+
+    else{
+
+        if(n==1 || n ==3){
+            cout<<1<<endl;
+            return;
+        }
+
+        cout<< (n-1)/2 <<endl;
+    }
     
 }
 

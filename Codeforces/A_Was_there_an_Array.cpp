@@ -45,7 +45,47 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int n;
+    cin>>n;
+
+    vector<int> b(n);
+
+    for(int i = 1; i<=n-2; i++){
+        cin>>b[i];
+    }
+
+    vector<int> a(n, 0);
+    int x = 1;
+    a[0] = x;
+
+    for(int i = 1; i<=n-2; i++){
+        if(b[i] == 1){
+            a[i] = x;
+            a[i-1] = x;
+            a[i+1] = x;
+        }
+    }
+
+    for(auto it: a){
+        cout<<it<<" ";
+    }
+
+    for(int i = 1; i<=n-2; i++){
+        if(b[i] == 1){
+            if(a[i] != a[i-1] || a[i] != a[i+1]){
+                cout<<"NO"<<endl;
+                return;
+            }
+        }
+
+        else if(a[i] == a[i+1] || a[i] ==a[i-1]){
+            cout<<"NO"<<endl;
+            return;
+        }
+    }
+
+    cout<<"YES"<<endl;
+
     
 }
 

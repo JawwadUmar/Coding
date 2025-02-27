@@ -45,7 +45,30 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int x, y;
+    cin>>x>>y;
+
+    if(x+1 == y){
+        cout<<"Yes"<<endl;
+        return;
+    }
+
+    int diff = x-y;
+
+    if(diff<=0){
+        cout<<"No"<<endl;
+        return;
+    }
+
+    diff = diff-8;
+
+    if(diff%9){
+        cout<<"No"<<endl;
+        return;
+    }
+
+    cout<<"Yes"<<endl;
+
     
 }
 

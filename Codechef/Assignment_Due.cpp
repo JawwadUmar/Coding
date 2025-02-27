@@ -45,7 +45,16 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int x, y;
+    cin>>x>>y;
+
+    if(y>=x){
+        cout<<"YES"<<endl;
+    }
+
+    else{
+        cout<<"NO"<<endl;
+    }
     
 }
 
@@ -55,7 +64,7 @@ signed main(){
     cin.tie(0);
     
     int t = 1;
-    cin>>t;
+    // cin>>t;
     while(t--){
        solve();
     }

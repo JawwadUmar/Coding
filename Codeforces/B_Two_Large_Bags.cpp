@@ -45,7 +45,36 @@ int numberOfSetBits(int n){
 
 void solve(){
 
+    int n;
+    cin>>n;
+
+    vector<int> a(n);
+    map<int, int> mp;
+
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+        mp[a[i]]++;
+    }
+
     
+    auto it = mp.begin();
+    while(it != mp.end()){
+        int num = it->first;
+        int freq = it->second;
+
+        if(freq == 1){
+            cout<<"No"<<endl;
+            return;
+        }
+
+        if(freq-2 > 0){
+            mp[num+1]+= freq-2;
+        }
+        
+        it++;
+    }
+
+    cout<<"Yes"<<endl;
     
 }
 

@@ -45,7 +45,20 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int n;
+    cin>>n;
+
+    if(n<=2){
+        cout<<n+1<<endl;
+        return;
+    }
+
+    int x = n/15 + 1;
+    int y = (n-1)/15 + 1;
+    int z = (n-2)/15 + 1;
+
+
+    cout<<x+y+z<<endl;
     
 }
 

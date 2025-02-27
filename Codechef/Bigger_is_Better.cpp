@@ -45,7 +45,20 @@ int numberOfSetBits(int n){
 
 void solve(){
 
-    
+    int n;
+    cin>>n;
+
+    string s;
+    cin>>s;
+
+    string temp(n, 'z');
+
+    if(s == temp){
+        cout<<-1<<endl;
+        return;
+    }
+
+    cout<<temp<<endl;
     
 }
 

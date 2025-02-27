@@ -12,9 +12,6 @@ template <typename T>
 using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 template <typename T>
-
-
-
 using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define int long long
@@ -44,8 +41,27 @@ int numberOfSetBits(int n){
 
 
 void solve(){
-
     
+    string s;
+    cin>>s;
+    int n = s.size();
+
+    bool flag = false;
+
+    for(int i =0; i<n-1; i++){
+        if(s[i] == s[i+1]){
+            flag = true;
+            break;
+        }
+    }
+
+    if(flag){
+        cout<<1<<endl;
+    }
+
+    else{
+        cout<<s.size()<<endl;
+    }
     
 }
 

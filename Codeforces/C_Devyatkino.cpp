@@ -43,10 +43,47 @@ int numberOfSetBits(int n){
 }
 
 
+bool contains7(int x){
+    while(x){
+        int rem = x%10;
+        if(rem == 7){
+            return true;
+        }
+
+        x = x/10;
+    }
+
+    return false;
+}
+
 void solve(){
 
+    int n;
+    cin>>n;
+
+    int num = 9;
+    int res = 1e9;
+
+
+    while (num <= 99999999999)
+    {
+        int cnt = 0;
+        int x = n;
+
+        while (!contains7(x))
+        {
+            x= x + num;
+            cnt++;
+        }
+
+        res = min(res, cnt);
+        num = num*10 + 9;
+    }
     
-    
+
+
+    cout<<res<<endl;
+
 }
 
 signed main(){
