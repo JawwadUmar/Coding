@@ -83,7 +83,7 @@
             return;
         }
 
-        else if(abs(cnt0 - cnt1) == 2){
+        else if(abs(cnt0 - cnt1) <= 3){
             cout<<2<<endl;
         }
 
