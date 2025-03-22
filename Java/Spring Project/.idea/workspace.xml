@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3ba08a0e-5b76-4476-92f0-8d4967e94aef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/.idea/Quiz-Console-App.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Quiz-Console-App/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Codechef/Alternate_It.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codechef/Alternate_It.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../temp.exe" beforeDir="false" />
+    <list default="true" id="bef93956-8708-4dec-b210-dcfeb9d27ca7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Spring Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +17,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
   "associatedIndex": 5
 }]]></component>
-  <component name="ProjectId" id="2u8lvong2IQQoXLmDeKRcCit5WG" />
+  <component name="ProjectId" id="2uJmR2SNdbuFULPPNFGIe0yIwyD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -32,6 +28,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true"
   }
@@ -39,11 +36,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3ba08a0e-5b76-4476-92f0-8d4967e94aef" name="Changes" comment="" />
-      <created>1741638318937</created>
+      <changelist id="bef93956-8708-4dec-b210-dcfeb9d27ca7" name="Changes" comment="" />
+      <created>1741975043540</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1741638318937</updated>
+      <updated>1741975043540</updated>
     </task>
     <servers />
   </component>

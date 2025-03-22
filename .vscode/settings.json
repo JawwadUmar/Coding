@@ -13,6 +13,7 @@
         "shared_mutex": "cpp",
         "sstream": "cpp",
         "tuple": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "cmath": "cpp"
     }
 }
