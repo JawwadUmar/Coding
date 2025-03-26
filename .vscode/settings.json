@@ -14,6 +14,9 @@
         "sstream": "cpp",
         "tuple": "cpp",
         "vector": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "initializer_list": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp"
     }
 }

@@ -43,9 +43,44 @@ int numberOfSetBits(int n){
 }
 
 
-void solve(){
+void sieveOfErastosthenes(vector<bool> &isPrime){
+    isPrime[0] = isPrime[1] = false;
 
-    cout<<log3(32)<<endl;
+    for(int i = 2; i*i<=10000000; i++){
+        
+        if(isPrime[i] == true){
+            int j = i*i;
+
+            while (j<=10000000)
+            {
+                isPrime[j] = false;
+                j+=i;
+            }
+            
+        }
+    }
+}
+
+void solve(vector<int> &primeNumbers){
+
+    int n;
+    cin>>n;
+
+    int res = 0;
+
+    for(int i= 1; i<=n; i++){
+        int a = i;
+
+        int prime = n/a;
+        
+
+        auto it = upper_bound(primeNumbers.begin(), primeNumbers.end(), prime);
+
+        res+= (it - primeNumbers.begin());
+    }
+
+    cout<<res<<endl;
+
     
 }
 
@@ -53,11 +88,22 @@ signed main(){
     ios_base::sync_with_stdio(0);
     cout.tie(0);
     cin.tie(0);
+
+    vector<bool> isPrime(10000000+1, true);
+    sieveOfErastosthenes(isPrime);
+    
+    vector<int> primeNumbers;
+
+    for(int i = 2; i<= 10000000; i++){
+        if(isPrime[i] == true){
+            primeNumbers.push_back(i);
+        }
+    }
     
     int t = 1;
     cin>>t;
     while(t--){
-       solve();
+       solve(primeNumbers);
     }
     return 0;
 }
