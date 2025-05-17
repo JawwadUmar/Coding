@@ -17,6 +17,7 @@
         "cmath": "cpp",
         "initializer_list": "cpp",
         "xstring": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "iterator": "cpp"
     }
 }

@@ -45,6 +45,23 @@ int numberOfSetBits(int n){
 
 void solve(){
 
+    int n, m;
+    cin>>n>>m;
+
+    int a, b;
+    cin>>a>>b;
+
+    int x1, x2, x3, x4;
+
+    x1 = ceil(log2((double) n));
+    x2 = ceil(log2((double) m));
+    x3 = ceil(log2((double) min(a, n-a+1)));
+
+    x4 = ceil(log2((double) min(b, m-b+1)));
+
+   
+    cout<<min(x1+x4, x2+x3) +1<<endl;
+
 }
 
 signed main(){

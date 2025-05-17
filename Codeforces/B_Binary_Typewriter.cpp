@@ -43,8 +43,47 @@ int numberOfSetBits(int n){
 }
 
 
+int calculateCost(string &s){
+    int n = s.size();
+    int handson = 0;
+    int res = 0;
+    for(int i = 0; i<n; i++){
+        int x = s[i] - '0';
+
+        if(x != handson){
+            handson = 1- handson;
+            res++;
+        }
+    }
+
+    
+    return res+n;
+}
+
 void solve(){
 
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+
+    int l = 0;
+    while (l<n && s[l] =='0')
+    {
+        l++;
+    }
+
+    int r = n-1;
+    for(int idx = l+1; idx <n-1; idx++){
+
+        if(s[idx] == '0' && s[idx+1] == '1'){
+            r = idx;
+            break;
+        }
+    }
+
+    reverse(s.begin()+l, s.begin()+r+1);
+    cout<<calculateCost(s)<<endl;
 }
 
 signed main(){
@@ -59,3 +98,6 @@ signed main(){
     }
     return 0;
 }
+
+
+// 1101010010011011100
