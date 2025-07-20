@@ -43,36 +43,22 @@ int numberOfSetBits(int n){
 }
 
 
- int turn(int n, int m, int a, int b, int op)
-{
-    if (n == 1 && m == 1)
-    {
-        return op;
-    }
-    int m1 = (m - b), m2 = (n - a), m3 = max(m1, (b - 1)), m4 = max(m2, (a - 1));
-    if ((n - m4) * m > (m - m3) * n && ((n - m4) * m > 1))
-    {
-        m -= m3;
-    }
-    else
-    {
-        if ((m - m3) * n > 1)
-            n -= m4;
-    }
-   
-    a = (n + 1) / 2;
-    b = (m + 1) / 2;
-    op++;
-    return turn(n, m, a, b, op);
-}
+void solve(){
 
+    int n, m;
+    cin>>n>>m;
 
+    if(n== 1 || m == 1){
+        cout<<"NO"<<endl;
+        return;
+    }
 
-void solve()
-{
-    int n, m, a, b, op = 0;
-    cin >> n >> m >> a >> b;
-    cout << turn(n, m, a, b, op) << endl;
+    if(n==2 && m == 2){
+        cout<<"NO"<<endl;
+        return;
+    }
+
+    cout<<"YES"<<endl;
 }
 
 signed main(){

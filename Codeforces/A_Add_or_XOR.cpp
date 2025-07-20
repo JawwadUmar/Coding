@@ -43,36 +43,58 @@ int numberOfSetBits(int n){
 }
 
 
- int turn(int n, int m, int a, int b, int op)
-{
-    if (n == 1 && m == 1)
-    {
-        return op;
-    }
-    int m1 = (m - b), m2 = (n - a), m3 = max(m1, (b - 1)), m4 = max(m2, (a - 1));
-    if ((n - m4) * m > (m - m3) * n && ((n - m4) * m > 1))
-    {
-        m -= m3;
-    }
-    else
-    {
-        if ((m - m3) * n > 1)
-            n -= m4;
-    }
-   
-    a = (n + 1) / 2;
-    b = (m + 1) / 2;
-    op++;
-    return turn(n, m, a, b, op);
-}
+void solve(){
 
+    int a, b, x, y;
+    cin>>a>>b>>x>>y;
 
+    //a -- > b
 
-void solve()
-{
-    int n, m, a, b, op = 0;
-    cin >> n >> m >> a >> b;
-    cout << turn(n, m, a, b, op) << endl;
+    if(a == b){
+        cout<<0<<endl;
+        return;
+    }
+
+    else if(a-b >1){
+        cout<<-1<<endl;
+        return;
+    }
+
+    else if(a-b== 1){
+        if((a^1) == b){
+            cout<<y<<endl;
+        }
+
+        else{
+            cout<<-1<<endl;
+        }
+
+        return;
+    }
+
+    if(y>=x){
+        cout<<x*(b-a)<<endl;
+        return;
+    }
+
+    int res = 0;
+    while (a!=b)
+    {
+        if(a%2){
+            a+=1;
+            res+=x;
+        }
+
+        else{
+            a = (a^1);
+            res+= y;
+        }
+    }
+
+    cout<<res<<endl;
+    
+
+    
 }
 
 signed main(){

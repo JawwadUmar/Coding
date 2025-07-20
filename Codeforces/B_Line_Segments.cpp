@@ -43,36 +43,52 @@ int numberOfSetBits(int n){
 }
 
 
- int turn(int n, int m, int a, int b, int op)
-{
-    if (n == 1 && m == 1)
-    {
-        return op;
+void solve(){
+
+    int n;
+    cin>>n;
+    int x1, y1, x2, y2;
+    cin>>x1>>y1>>x2>>y2;
+
+    vector<int> a(n);
+    int sum = 0;
+    for(int i = 0; i<n; i++){
+        cin>>a[i];
+        sum+= a[i];
     }
-    int m1 = (m - b), m2 = (n - a), m3 = max(m1, (b - 1)), m4 = max(m2, (a - 1));
-    if ((n - m4) * m > (m - m3) * n && ((n - m4) * m > 1))
-    {
-        m -= m3;
-    }
-    else
-    {
-        if ((m - m3) * n > 1)
-            n -= m4;
-    }
-   
-    a = (n + 1) / 2;
-    b = (m + 1) / 2;
-    op++;
-    return turn(n, m, a, b, op);
-}
 
 
+    int d = ((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 
-void solve()
-{
-    int n, m, a, b, op = 0;
-    cin >> n >> m >> a >> b;
-    cout << turn(n, m, a, b, op) << endl;
+    if(d > sum*sum){
+        cout<<"No"<<endl;
+        return;
+    }
+
+    else if(d == sum*sum){
+        cout<<"Yes"<<endl;
+        return;
+    }
+
+    //n+1 polygon with sides a[i] and d
+    //d is not the biggest among them
+    sort(a.begin(), a.end());
+    double biggest = a[n-1];
+
+    sum = 0;
+    for(int i = 0; i<n-1; i++){
+        sum+=a[i];
+    }
+
+    double A = (double)(sum + (double)(sqrt((double)d)));
+
+    if(biggest > A){
+        cout<<"No"<<endl;
+    }
+
+    else{
+        cout<<"Yes"<<endl;
+    }
 }
 
 signed main(){

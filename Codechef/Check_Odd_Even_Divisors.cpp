@@ -43,36 +43,52 @@ int numberOfSetBits(int n){
 }
 
 
- int turn(int n, int m, int a, int b, int op)
-{
-    if (n == 1 && m == 1)
-    {
-        return op;
-    }
-    int m1 = (m - b), m2 = (n - a), m3 = max(m1, (b - 1)), m4 = max(m2, (a - 1));
-    if ((n - m4) * m > (m - m3) * n && ((n - m4) * m > 1))
-    {
-        m -= m3;
-    }
-    else
-    {
-        if ((m - m3) * n > 1)
-            n -= m4;
-    }
-   
-    a = (n + 1) / 2;
-    b = (m + 1) / 2;
-    op++;
-    return turn(n, m, a, b, op);
-}
+void solve(){
 
+    int a, b;
+    cin>>a>>b;
 
+    //odd and even
 
-void solve()
-{
-    int n, m, a, b, op = 0;
-    cin >> n >> m >> a >> b;
-    cout << turn(n, m, a, b, op) << endl;
+    if(a ==0){
+        cout<<"No"<<endl;
+        return;
+    }
+
+    else if(a == 1){
+        cout<<"Yes"<<endl;
+        return;
+    }
+
+    else if(a>1){
+        
+        if(b == 0){
+            cout<<"Yes"<<endl;
+            return;
+        }
+
+        else if(a == b){
+            cout<<"Yes"<<endl;
+            return;
+        }
+
+        else if(a>b){
+            cout<<"No"<<endl;
+            return;
+        }
+
+        else if(b>a){
+            if(b%a == 0){
+                cout<<"Yes"<<endl;
+            }
+
+            else{
+                cout<<"No"<<endl;
+            }
+        }
+        
+    }
+
 }
 
 signed main(){

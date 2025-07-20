@@ -43,36 +43,39 @@ int numberOfSetBits(int n){
 }
 
 
- int turn(int n, int m, int a, int b, int op)
-{
-    if (n == 1 && m == 1)
-    {
-        return op;
-    }
-    int m1 = (m - b), m2 = (n - a), m3 = max(m1, (b - 1)), m4 = max(m2, (a - 1));
-    if ((n - m4) * m > (m - m3) * n && ((n - m4) * m > 1))
-    {
-        m -= m3;
-    }
-    else
-    {
-        if ((m - m3) * n > 1)
-            n -= m4;
-    }
-   
-    a = (n + 1) / 2;
-    b = (m + 1) / 2;
-    op++;
-    return turn(n, m, a, b, op);
-}
+void solve(){
+    int n;
+    cin>>n;
 
+    vector<vector<int>> v(n);
 
+    for(int i = 0; i<n; i++){
+        int a, b, c, d;
+        cin>>a>>b>>c>>d;
+        v[i] = {a, b, c, d};
+    }
 
-void solve()
-{
-    int n, m, a, b, op = 0;
-    cin >> n >> m >> a >> b;
-    cout << turn(n, m, a, b, op) << endl;
+    int ops = 0;
+
+    for(int i =0; i<n; i++){
+        int a = v[i][0];
+        int b = v[i][1];
+        int c = v[i][2];
+        int d = v[i][3];
+
+        if(a == c && b == d){
+            continue;
+        }
+        if(a > c){
+            ops+= a-c;
+        }
+
+        if(b>d){
+            ops+= min(a, c) + (b-d);
+        }
+    }
+
+    cout<<ops<<endl;
 }
 
 signed main(){
