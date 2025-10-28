@@ -1,62 +1,87 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
-public:
-    int trapRainWater(vector<vector<int>>& heightMap) {
-        int n = heightMap.size();
-        int m = heightMap[0].size();
 
-        vector<vector<int>> vis(n, vector<int> (m, 0));
+// vector<string> processLogs(vector<string> logs, int threshold){
 
-        multiset<vector<int>> mst;
+//     map<string, int> mp;
 
-        for(int i = 0; i<n; i++){
-            vis[i][0] = 1;
-            vis[i][m-1] = 1;
+//     for(int i = 0; i<logs.size(); i++){
 
-            mst.insert({heightMap[i][0], i, 0});
-            mst.insert({heightMap[i][m-1], i, m-1});
-        }
+//         stringstream ss(logs[i]);
+//         string word;
+//         vector<string> temp;
+//         while (getline(ss, word, ' '))
+//         {
+//             temp.push_back(word);
+//         }
 
-        for(int i = 1; i<m-1; i++){
-            vis[0][i] = 1;
-            vis[n-1][i] = 1;
+//         if(temp[0] == temp[1]){
+//             mp[temp[0]]++;
+//         }
 
-            mst.insert({heightMap[i][0], 0, i});
-            mst.insert({heightMap[i][m-1], n-1, i});
-        }
 
-        vector<int> delrow = {-1, 0, 1, 0};
-        vector<int> delcol = {0, 1, 0, -1};
-        int res = 0;
+//         else{
 
-        while (!mst.empty())
-        {
-            auto it = mst.begin();
-            vector<int> temp = *it;
-            mst.erase(it);
-
-            int h = temp[0];
-            int r = temp[1];
-            int c = temp[2];
-
-            for(int i = 0; i<4; i++){
-                int nrow = r + delrow[i];
-                int ncol = c + delcol[i];
-
-                if(nrow >= 0 && nrow < n && ncol >=0 && ncol < m && !vis[nrow][ncol]){
-                    vis[nrow][ncol] = 1;
-                    mst.insert({heightMap[nrow][ncol], nrow, ncol});
-
-                    if(heightMap[nrow][ncol] < h){
-                        res+= h - heightMap[nrow][ncol];
-                    }
-                }
-            }
-        }
-
-        return res;
+//             mp[temp[0]]++;
+//             mp[temp[1]]++;
+//         }
         
+//     }
+
+//     vector<string> res;
+
+//     for(auto it: mp){
+//         if(it.second >= threshold){
+//             res.push_back(it.first);
+//         }
+//     }
+
+//     return res;
+// }
+
+
+
+int changeX(char c){
+    if(c == 'R'){
+        return 1;
     }
-};
+
+    if(c == 'L'){
+        return -1;
+    }
+
+    return 0;
+}
+
+int changeY(char c){
+    if(c == 'U'){
+        return 1;
+    }
+
+    if(c == 'D'){
+        return -1;
+    }
+
+    return 0;
+}
+int getMaxDelections(string s){
+    int delx = 0;
+    int dely = 0;
+
+    for(auto it: s){
+        delx+= changeX(it);
+        dely+= changeY(it);
+    }
+
+    int reqSize = abs(delx) + abs(dely);
+    int n = s.size();
+    return n - reqSize;
+
+}
+
+int main(){
+
+    
+
+}
