@@ -1,40 +1,70 @@
-# for index in range(0, 6):
-#     print(arr[index])
 
-# index = 0
+class Queue:
+    def __init__(self, mxSize):
+        self.mxSize = mxSize
+        self.q = [0]*mxSize
+        self.first = -1
+        self.last = -1
+    
+    def isEmpty(self):
+        if self.first == -1:
+            return True
+        
+        return False
+    
+    def enqueue(self, x):
 
-# while index<=5:
-#     print(arr[index])
-#     index = index + 1
+        if (self.last + 1)%(self.mxSize) == self.first:
+            raise Exception("Queue is already full")
+        
+        if self.isEmpty():
+            self.first = 0
+        
+        
+        self.last = (self.last + 1)%(self.mxSize)
+        self.q[self.last] = x
+    
+    def dequeue(self):
+
+        if(self.first == self.last):
+            ##queue will become empty
+            self.first = -1
+            self.last = -1
+
+        if(self.isEmpty() ==False):
+            self.first = (self.first + 1)%(self.mxSize)
+
+    def front(self):
+        if self.isEmpty():
+            raise Exception("The queue is empty")
+        return self.q[self.first]
 
 
 
 
-#sum = 2 + 3 + 7 + 1 + 9 + 4 = 26
-#sum of all the elements
+que = Queue(5)
 
-#sum of all the elements
-# sum = 0
-# for i in range(0, 6):
-#     sum +=arr[i]
+que.enqueue(5)
+que.enqueue(2)
+que.enqueue(3)
+que.enqueue(7)
+que.enqueue(6)
 
-# print(sum)
 
-# arr = [2, 3, 7, 1, 9, 4]
-# prod = 1
-# for i in range(0, 6):
-#     prod *=arr[i]
+que.dequeue()
+que.dequeue()
+que.dequeue()
+que.dequeue()
 
-# print(prod)
 
-#largest element in the list
-# arr = [2, 3, 7, 10, 9, 4]
-# largest = arr[0]
 
-# for i in range(1, 6):
-#     if arr[i] > largest:
-#         largest = arr[i]
+print(que.front())
 
-# print(largest)
 
-#secondLargest
+
+
+
+    
+
+    
+    
