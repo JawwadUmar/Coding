@@ -69,6 +69,10 @@ func main() {
 	request := OpenAIRequest{
 		Messages: []Message{
 			{
+				Role:    "system",
+				Content: "You are a helpful AI assistant specialized in providing concise and accurate answers. Always be polite and informative.",
+			},
+			{
 				Role:    "user",
 				Content: "How many free responses do i have",
 			},
