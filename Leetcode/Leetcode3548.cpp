@@ -73,7 +73,7 @@ bool checkRowAsc(vector<vector<int>>& grid, long long totalSum){
         int m = grid[0].size();
         long long x = 0;
         long long y = 0;
-        set<int> st;
+        set<long long> st;
         for(int i =0; i<n; i++){
             for(int j = 0; j<m; j++){
                 st.insert(grid[i][j]);
@@ -102,7 +102,7 @@ bool checkRowDesc(vector<vector<int>>& grid, long long totalSum){
         int m = grid[0].size();
        long long x = 0;
        long long  y = 0;
-        set<int> st;
+        set<long long> st;
 
         for(int i =n-1; i>=0; i--){
             for(int j = 0; j<m; j++){
@@ -132,7 +132,7 @@ bool checkColAsc(vector<vector<int>>& grid, long long totalSum){
         int m = grid[0].size();
        long long x = 0;
        long long  y = 0;
-        set<int> st;
+        set<long long> st;
 
          for(int j = 0; j<m; j++){
             for(int i = 0; i<n; i++){
@@ -162,7 +162,7 @@ bool checkColDesc(vector<vector<int>>& grid, long long totalSum){
         int m = grid[0].size();
        long long x = 0;
        long long  y = 0;
-        set<int> st;
+        set<long long> st;
 
          for(int j = m-1; j>=0; j--){
             for(int i = 0; i<n; i++){
