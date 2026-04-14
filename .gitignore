@@ -3,3 +3,4 @@ Web Development/
 .exe
 .DS_store
 .idea/
+*.dSYM/
