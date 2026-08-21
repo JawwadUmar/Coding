@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -96,5 +97,6 @@ func getBiggestThree(grid [][]int) []int {
 }
 
 func main() {
+	fmt.Print("jawwad")
 
 }
