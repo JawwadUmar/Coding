@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func understandingArray() {
 	fmt.Println("UNDERSTADNING ARRAYS")
@@ -49,6 +52,8 @@ func understandingSlices() {
 	crr := make([]int, len(arr))
 	copy(crr, arr)
 	fmt.Println(crr)
+
+	sort.Ints(crr)
 
 }
 
